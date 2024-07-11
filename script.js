@@ -36,8 +36,13 @@ $(document).ready(function () {
     const savedDNI = getCookieDni('userDNI');
     if (savedDNI) {
         $('#dni').val(savedDNI);
-         $('#labelDni').hide();
-	}
+        $('#dni').parent().addClass('focus');
+        $('#labelDni').hide();
+    }
+
+    $('#dni').on('change', function() {
+        setCookieDni('userDNI', $(this).val(), 9999);
+    });
 	
 	
 	
@@ -45,11 +50,7 @@ $(document).ready(function () {
 	
 	checkVisit();
 	
-	$('#continuar').on('click', function () {
-		const dni = $('#dni').val();
-        if (dni) { 
-            setCookieDni('userDNI', dni, 9999);  
-		} 
+	$('#continuar').on('click', function () { 
 		document.getElementById("barraCarga").style.display = "block";
 		consultarDNI($('#dni').val());
 		
