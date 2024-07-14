@@ -7,7 +7,7 @@ var notificacion = "no";
 
 
 function animateButtonClick() {
-  window.ReactNativeWebView.postMessage('Botón clickeado');
+  //window.ReactNativeWebView.postMessage('Botón clickeado');
   var button = document.getElementById("btn");
   button.disabled = true; // Desactivamos el botón para evitar múltiples clics durante la animación
 
