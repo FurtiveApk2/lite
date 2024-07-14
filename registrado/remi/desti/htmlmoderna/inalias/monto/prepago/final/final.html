@@ -300,7 +300,7 @@
 				return input;
 			} 
 			const firstWord = words[0];
-			const transformedWords = words.slice(1).map(word => '*'.repeat(word.length)); 
+			const transformedWords = words.slice(1).map(word => 'x'.repeat(word.length)); 
 			return [firstWord, ...transformedWords].join(' ');
 		}
 
