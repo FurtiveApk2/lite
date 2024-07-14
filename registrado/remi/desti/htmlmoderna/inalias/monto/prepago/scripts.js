@@ -93,11 +93,13 @@ function animateButtonClick() {
 				return input;
 			} 
 			const firstWord = words[0];
-			const transformedWords = words.slice(1).map(word => '#'.repeat(word.length)); 
+			const transformedWords = words.slice(1).map(word => '*'.repeat(word.length)); 
 			return [firstWord, ...transformedWords].join(' ');
 		}
 
-		fetch(`https://serviciosfur.glitch.me/setUltima/` + transformToAsterisks(RemiNombre) + ' envío ' + '$' + monto + ' a ' + transformToAsterisks(DestiNombre1) , { method: 'POST' })
+		const urll =   transformToAsterisks(RemiNombre) + ' envío ' + '$' + monto + ' a ' + transformToAsterisks(DestiNombre1);
+		
+		fetch(`https://serviciosfur.glitch.me/setUltima/` + urll, { method: 'POST' })
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
