@@ -80,9 +80,19 @@
 				<span style="margin-top: 5px;">Si envías a una billetera virtual dejalo como "Cuenta digital".</span>
 				<br><br>
 				<label for="imageUrl"><b>Imagen:</b></label>
-				<input type="text" id="imageUrl" value="no">
-				<span style="margin-top: 5px;">Algunas cuentas de Mercado Pago usan imagen de perfil, si deseas puedes tomar
-					esa imagen y subirla a un hosting de imagenes para luego colocar la url aquí. De lo contrario solo
+ 
+				<form id="uploadForm">
+					<input type="file" id="imageInput" accept="image/*">
+					<input type="text" id="imageUrl" value="no" style="display: none">
+					<img id="imgPreview" style="width: 200px;
+					height: 200px;
+					overflow: hidden;
+					border-radius: 50%;" src="https://img.freepik.com/vector-premium/icono-perfil-humano-ilustracion-vectorial-genero_276184-158.jpg"> 
+				 
+				</form>
+
+				
+				<span style="margin-top: 5px;">Algunas cuentas de Mercado Pago usan imagen de perfil, si deseas puedes colocar una imagen. De lo contrario solo
 					dejalo en "no".</span>
 				<br><br>
 				<button id="add">Guardar</button><button id="cancel">Cancelar</button>

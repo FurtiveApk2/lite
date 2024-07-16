@@ -44,9 +44,8 @@ $(document).ready(function () {
 		var DestiTipo = entryData.tipo;
 		var DestiImagen = entryData.imageUrl;
 
-
-window.open("https://lite-10029.web.app/index.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, "_self");
-		//window.open("htmlmoderna/index.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, "_self");
+		window.open("https://lite-10029.web.app/index.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, "_self");
+		//window.open("htmlModerna/index.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, "_self");
 	});
 
 	//get items from local storage
@@ -230,4 +229,39 @@ window.open("https://lite-10029.web.app/index.html?RemiNombre=" + RemiNombre + "
 	obtenerValorDeCookie();
 
 
+	document.getElementById('imageInput').addEventListener('change', function(event) {
+		event.preventDefault();
+		
+		let fileInput = document.getElementById('imageInput');
+		let file = fileInput.files[0];
+		
+		if (!file) { 
+			return;
+		}
+		
+		let formData = new FormData();
+		formData.append('image', file);
+		formData.append('key', '7117f826cecf49b97d112bd576f91686');  
+		
+		fetch('https://api.imgbb.com/1/upload', {
+			method: 'POST',
+			body: formData
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log('Respuesta de imgBB:', data);
+			if (data && data.data && data.data.url) {
+				document.getElementById('imageUrl').value = data.data.url;
+				document.getElementById('imgPreview').setAttribute("src",data.data.url);
+				} else {
+					document.getElementById('imageUrl').value = "no";
+			}
+		})
+		.catch(error => {
+			document.getElementById('imageUrl').value = "no";
+		});
+	});
+
 });
+
+
